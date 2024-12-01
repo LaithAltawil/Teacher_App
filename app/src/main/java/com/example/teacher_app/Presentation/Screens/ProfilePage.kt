@@ -29,11 +29,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.compose.AppTheme
+import com.example.teacher_app.AppTheme
 import com.example.schoolapp.Data.MockData.Mock.AllDetails
 import com.example.schoolapp.Data.MockData.Mock.Titles
 import com.example.schoolapp.Presentation.Screens.ScreensPieces.ProfilePageBox
-import com.example.schoolapp.R
+import com.example.teacher_app.R
 
 //solved @LT #qustion[not answered] || do you want me to organize this for you or leave it as is XD?
 //LT: please do :))

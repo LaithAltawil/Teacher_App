@@ -1,5 +1,6 @@
 package com.example.schoolapp.Presentation.Screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,10 +13,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -35,27 +40,30 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.compose.AppTheme
 import com.example.schoolapp.Data.MainMenuItem
-import com.example.schoolapp.Data.MockData.Mock
+import com.example.schoolapp.Data.MockData.Mock.ClassesList
 import com.example.schoolapp.Data.MockData.Mock.HomeworkMock
-import com.example.schoolapp.Navigation.Screen
+import com.example.schoolapp.Data.MockData.Mock.classList
+import com.example.schoolapp.Data.MockData.Mock.daysOfWeek
 import com.example.schoolapp.Presentation.Util.ExpandableCard
-import com.example.schoolapp.R
+import com.example.teacher_app.AppTheme
+import com.example.teacher_app.Navigation.Screen
+import com.example.teacher_app.R
 import kotlinx.coroutines.launch
 
 //=======================================================
@@ -70,13 +78,13 @@ import kotlinx.coroutines.launch
 fun MainMenu(navController: NavController) {
 
 
-
     //=======================================================
     //variables: local & states                             =
     //=======================================================
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
-
+    var selectedItemIndex by remember { mutableStateOf(0) }
+    val lazyListState = rememberLazyListState()
 
     val menuItems = listOf(
         MainMenuItem(
@@ -134,18 +142,13 @@ fun MainMenu(navController: NavController) {
             onClick = { /*TODO*/ }
         )
     )
-    val item = listOf(
-        "item1",
-        "item2",
-        "item3",
-        "item4",
-        "item5",
-        "item6",
-    )
     //=======================================================
     //Logic & UI,solved @LT @MAS #simple || explain the code  =
     //this is the main page of the app which the student enters after signing in
     //=======================================================
+    LaunchedEffect(selectedItemIndex) {
+        lazyListState.scrollToItem(selectedItemIndex)
+    }
     AppTheme {
         ModalNavigationDrawer(
             drawerState = drawerState,
@@ -162,7 +165,7 @@ fun MainMenu(navController: NavController) {
                         )
 
                         .width(300.dp),
-                    color = MaterialTheme.colorScheme.primary
+                    color = Color(0xFF6E5D00)
                 ) {
                     Column(
                         modifier = Modifier
@@ -199,18 +202,22 @@ fun MainMenu(navController: NavController) {
                         }
                         LazyColumn {
                             items(menuItems.size) { item ->
-                                Card(modifier = Modifier
-                                    .padding(12.dp)
-                                    .width(600.dp)
-                                    .height(70.dp)
-                                    .clickable {
-                                        menuItems[item].onClick()
-                                    }, colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.primaryContainer
-                                )) {
-                                    Column(modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(10.dp)) {
+                                Card(
+                                    modifier = Modifier
+                                        .padding(12.dp)
+                                        .width(600.dp)
+                                        .height(70.dp)
+                                        .clickable {
+                                            menuItems[item].onClick()
+                                        }, colors = CardDefaults.cardColors(
+                                        containerColor = Color(0xFFFFE368)
+                                    )
+                                ) {
+                                    Column(
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .padding(10.dp)
+                                    ) {
                                         Row(
                                             modifier = Modifier.fillMaxSize(),
                                             verticalAlignment = Alignment.CenterVertically,
@@ -241,7 +248,8 @@ fun MainMenu(navController: NavController) {
                                 RoundedCornerShape(
                                     bottomEnd = 16.dp,
                                     bottomStart = 16.dp
-                                )),
+                                )
+                            ),
                             title = {
                                 Column(modifier = Modifier.fillMaxWidth()) {
                                     Text(
@@ -277,6 +285,8 @@ fun MainMenu(navController: NavController) {
                             .padding(it)
                             .fillMaxSize()
                     ) {
+
+
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
@@ -284,79 +294,159 @@ fun MainMenu(navController: NavController) {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Spacer(modifier = Modifier)
-                            Card(
-                                modifier = Modifier
-                                    .clip(
-                                        RoundedCornerShape(
-                                            topEnd = 25.dp,
-                                            topStart = 25.dp,
-                                            bottomEnd = 25.dp,
-                                            bottomStart = 25.dp
+                            LazyRow {
+                                items(3) {
+                                    Card(
+                                        modifier = Modifier
+                                            .clip(
+                                                RoundedCornerShape(
+                                                    topEnd = 25.dp,
+                                                    topStart = 25.dp,
+                                                    bottomEnd = 25.dp,
+                                                    bottomStart = 25.dp
+                                                )
+                                            )
+                                            .padding(10.dp)
+                                            .width(370.dp)
+                                            .height(200.dp)
+                                            .clickable {
+                                            }, colors = CardDefaults.cardColors(
+                                            containerColor = MaterialTheme.colorScheme.primary
                                         )
-                                    )
-                                    .padding(10.dp)
-                                    .width(600.dp)
-                                    .height(200.dp)
-                                    .clickable {
-                                    }, colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.primary
-                                )
-                            ) {
-                                Column(
-                                    modifier = Modifier.fillMaxSize(),
-                                    verticalArrangement = Arrangement.Center,
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                ) {
-                                    Icon(painter = painterResource(id = R.drawable.training), contentDescription =null )
+                                    ) {
+                                        Column(
+                                            modifier = Modifier.fillMaxSize(),
+                                            verticalArrangement = Arrangement.Center,
+                                            horizontalAlignment = Alignment.CenterHorizontally
+                                        ) {
+                                            Icon(
+                                                painter = painterResource(id = R.drawable.training),
+                                                contentDescription = null
+                                            )
 
+                                        }
+
+
+                                    }
                                 }
 
-                                
+
                             }
-                            Spacer(modifier = Modifier.height(10.dp))
+                            Spacer(modifier = Modifier.height(5.dp))
                             Text(
-                                text = "To Do",
+                                text = "Classes",
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.displayLarge,
                                 color = MaterialTheme.colorScheme.secondary
                             )
-                            Spacer(modifier = Modifier.height(10.dp))
-                            LazyColumn {
-//                                items(item.size) {
-//                                    Card(modifier = Modifier
-//                                        .clip(
-//                                            RoundedCornerShape(
-//                                                topEnd = 25.dp,
-//                                                topStart = 25.dp,
-//                                                bottomEnd = 25.dp,
-//                                                bottomStart = 25.dp
-//                                            )
-//                                        )
-//                                        .padding(11.dp)
-//                                        .width(600.dp)
-//                                        .height(100.dp)
-//                                        .clickable { }, colors = CardDefaults.cardColors(
-//                                        containerColor = MaterialTheme.colorScheme.primary
-//                                    )) {
-//                                        Column(modifier = Modifier.fillMaxSize()) {
-//                                        }
-//                                    }
-//                                }
-                                items(HomeworkMock.size) { index ->
+                            Spacer(modifier = Modifier.height(5.dp))
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(start = 10.dp, end = 10.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally,
 
-                                         if (!HomeworkMock[index].isCompleted){
-                                    ExpandableCard(
-                                        Data = HomeworkMock[index]
-                                    )}
+                                ) {
+                                Text(
+                                    text = daysOfWeek[selectedItemIndex],
+                                    fontSize = 24.sp,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(16.dp),
+                                    horizontalArrangement = androidx.compose.foundation.layout.Arrangement.SpaceBetween
+                                ) {
+                                    Button(
+                                        onClick = {
+                                            selectedItemIndex =
+                                                (selectedItemIndex - 1).coerceAtLeast(0)
+                                        }, modifier = Modifier
+                                            .width(150.dp)
+                                            .height(40.dp)
+                                    ) {
+                                        Text("Previous")
+                                    }
+                                    Button(
+                                        onClick = {
+                                            selectedItemIndex =
+                                                (selectedItemIndex + 1).coerceAtMost(classList.lastIndex + 1)
+                                        },
+                                        modifier = Modifier
+                                            .width(150.dp)
+                                            .height(40.dp),
+
+                                        ) {
+                                        Text("Next")
+                                    }
                                 }
+                                Column(
+                                    modifier = Modifier
+                                        .clip(RoundedCornerShape(26.dp))
+                                        .background(MaterialTheme.colorScheme.primary)
+
+                                        .padding(16.dp),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+
+                                    ) {
+                                    LazyColumn(
+                                        state = lazyListState, modifier = Modifier
+                                            .fillMaxWidth()
+                                    ) {
+
+                                        items(ClassesList) { List -> // Iterate through outer list
+                                            Column(
+                                                modifier = Modifier
+
+                                                    .fillMaxSize()
+                                                    .padding(16.dp),
+                                                horizontalAlignment = Alignment.CenterHorizontally
+                                            ) {
+
+                                                Text(
+                                                    text = List[selectedItemIndex].subjectName,
+                                                    fontSize = 26.sp,
+                                                    modifier = Modifier.padding(bottom = 8.dp),
+                                                    color = MaterialTheme.colorScheme.onPrimary
+                                                )
+                                                Spacer(modifier = Modifier.height(8.dp))
+                                                Text(
+                                                    text = List[selectedItemIndex].teacher,
+                                                    fontSize = 22.sp,
+                                                    modifier = Modifier.padding(bottom = 8.dp),
+                                                    color = MaterialTheme.colorScheme.onPrimary
+
+                                                )
+                                                Spacer(modifier = Modifier.height(8.dp))
+                                                Text(
+                                                    text = List[selectedItemIndex].time,
+                                                    fontSize = 18.sp,
+                                                    modifier = Modifier.padding(bottom = 8.dp),
+                                                    color = MaterialTheme.colorScheme.onPrimary
+
+                                                )
+
+
+                                            }
+
+
+                                        }
+
+
+                                    }
+
+                                }
+
+
                             }
                         }
                     }
                 }
-            }
-        )
+            })
     }
 }
+
 
 @Composable
 @Preview

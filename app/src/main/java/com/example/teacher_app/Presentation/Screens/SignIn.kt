@@ -24,6 +24,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -33,9 +34,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.compose.AppTheme
+import com.example.teacher_app.AppTheme
 import com.example.schoolapp.Presentation.VM.AppViewModel
-import com.example.schoolapp.R
+import com.example.teacher_app.R
+
 
 //=======================================================
 //Sign in page: Logic & UI                              =
@@ -56,7 +58,7 @@ fun SignIn(viewModel: AppViewModel = AppViewModel(), onClick: () -> Unit = {}) {
             modifier = Modifier
                 .fillMaxSize()
                 .imePadding()
-                .background(color = MaterialTheme.colorScheme.primaryContainer),
+                .background(color = Color(0xFFFFE368)),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -68,7 +70,7 @@ fun SignIn(viewModel: AppViewModel = AppViewModel(), onClick: () -> Unit = {}) {
                     .clip(
                         RoundedCornerShape(16.dp)
                     )
-                    .background(color = MaterialTheme.colorScheme.primary),
+                    .background(color = Color(0xFF6E5D00)),
                 contentAlignment = Alignment.Center
             ) {
                 //Main Box UI:Column
@@ -79,7 +81,7 @@ fun SignIn(viewModel: AppViewModel = AppViewModel(), onClick: () -> Unit = {}) {
                 ) {
                     Text(
                         text = "Welcome Back",
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = Color(0xFFFFFFFF),
                         style = MaterialTheme.typography.displayMedium,
                         overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
                         textAlign = TextAlign.Center
@@ -128,8 +130,8 @@ fun SignIn(viewModel: AppViewModel = AppViewModel(), onClick: () -> Unit = {}) {
                     Spacer(modifier = Modifier.size(20.dp))
                     Button(modifier = Modifier.clip(RoundedCornerShape(1.dp)),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.primaryContainer,
-                            contentColor = MaterialTheme.colorScheme.primary
+                            containerColor = Color(0xFFFFE368),
+                            contentColor = Color(0xFFFFFFFF)
                             //solved @LT #simple-medium|| fix this...
                         ), onClick = {
                             onClick()

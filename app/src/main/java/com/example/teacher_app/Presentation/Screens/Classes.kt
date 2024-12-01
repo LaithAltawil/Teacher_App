@@ -1,6 +1,6 @@
 package com.example.schoolapp.Presentation.Screens
 
- import androidx.compose.foundation.background
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,8 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
- import androidx.compose.foundation.lazy.itemsIndexed
- import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -40,9 +40,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.compose.AppTheme
- import com.example.schoolapp.Data.MockData.Mock.ClassesList
- import com.example.schoolapp.Data.MockData.Mock.classList
+import com.example.teacher_app.AppTheme
+import com.example.schoolapp.Data.MockData.Mock.ClassesList
+import com.example.schoolapp.Data.MockData.Mock.classList
 import com.example.schoolapp.Data.MockData.Mock.daysOfWeek
 import com.example.schoolapp.Presentation.VM.MainViewModel
 
@@ -51,8 +51,10 @@ import com.example.schoolapp.Presentation.VM.MainViewModel
 //=======================================================
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StudentClass(mainViewModel: MainViewModel = MainViewModel(),
-                 navController: NavController) {
+fun StudentClass(
+    mainViewModel: MainViewModel = MainViewModel(),
+    navController: NavController
+) {
     //=======================================================
     //variables: local & stats                              =
     //=======================================================
@@ -154,20 +156,26 @@ fun StudentClass(mainViewModel: MainViewModel = MainViewModel(),
                                     .padding(16.dp),
                                 horizontalArrangement = androidx.compose.foundation.layout.Arrangement.SpaceBetween
                             ) {
-                                Button(onClick = {
-                                    selectedItemIndex =
-                                        (selectedItemIndex - 1).coerceAtLeast(0)
-                                }, modifier = Modifier.width(150.dp).height(40.dp)
-                                    ) {
+                                Button(
+                                    onClick = {
+                                        selectedItemIndex =
+                                            (selectedItemIndex - 1).coerceAtLeast(0)
+                                    }, modifier = Modifier
+                                        .width(150.dp)
+                                        .height(40.dp)
+                                ) {
                                     Text("Previous")
                                 }
-                                Button(onClick = {
-                                    selectedItemIndex =
-                                        (selectedItemIndex + 1).coerceAtMost(classList.lastIndex+1)
-                                },
-                                    modifier = Modifier.width(150.dp).height(40.dp),
+                                Button(
+                                    onClick = {
+                                        selectedItemIndex =
+                                            (selectedItemIndex + 1).coerceAtMost(classList.lastIndex + 1)
+                                    },
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(40.dp),
 
-                                        ) {
+                                    ) {
                                     Text("Next")
                                 }
                             }
@@ -179,69 +187,54 @@ fun StudentClass(mainViewModel: MainViewModel = MainViewModel(),
                                     .padding(16.dp),
                                 horizontalAlignment = Alignment.CenterHorizontally,
 
-                            ) {
-                                LazyColumn(state = lazyListState, modifier = Modifier
-                                    .fillMaxWidth()) {
+                                ) {
+                                LazyColumn(
+                                    state = lazyListState, modifier = Modifier
+                                        .fillMaxWidth()
+                                ) {
 
-                                        items(ClassesList) { List -> // Iterate through outer list
-                                            Column(
-                                                modifier = Modifier
+                                    items(ClassesList) { List -> // Iterate through outer list
+                                        Column(
+                                            modifier = Modifier
 
-                                                    .fillMaxSize()
-                                                    .padding(16.dp)
-                                                ,
-                                                horizontalAlignment = Alignment.CenterHorizontally
-                                            ) {
+                                                .fillMaxSize()
+                                                .padding(16.dp),
+                                            horizontalAlignment = Alignment.CenterHorizontally
+                                        ) {
 
-                                                Text(
-                                                    text = List[selectedItemIndex].subjectName,
-                                                    fontSize = 26.sp,
-                                                    modifier = Modifier.padding(bottom = 8.dp),
-                                                    color = MaterialTheme.colorScheme.onPrimary
-                                                )
-                                                Spacer(modifier = Modifier.height(8.dp))
-                                                Text(
-                                                    text = List[selectedItemIndex].teacher,
-                                                    fontSize = 22.sp,
-                                                    modifier = Modifier.padding(bottom = 8.dp)
-                                                    ,
-                                                    color = MaterialTheme.colorScheme.onPrimary
+                                            Text(
+                                                text = List[selectedItemIndex].subjectName,
+                                                fontSize = 26.sp,
+                                                modifier = Modifier.padding(bottom = 8.dp),
+                                                color = MaterialTheme.colorScheme.onPrimary
+                                            )
+                                            Spacer(modifier = Modifier.height(8.dp))
+                                            Text(
+                                                text = List[selectedItemIndex].teacher,
+                                                fontSize = 22.sp,
+                                                modifier = Modifier.padding(bottom = 8.dp),
+                                                color = MaterialTheme.colorScheme.onPrimary
 
-                                                )
-                                                Spacer(modifier = Modifier.height(8.dp))
-                                                Text(
-                                                    text = List[selectedItemIndex].time,
-                                                    fontSize = 18.sp,
-                                                    modifier = Modifier.padding(bottom = 8.dp),
-                                                    color = MaterialTheme.colorScheme.onPrimary
+                                            )
+                                            Spacer(modifier = Modifier.height(8.dp))
+                                            Text(
+                                                text = List[selectedItemIndex].time,
+                                                fontSize = 18.sp,
+                                                modifier = Modifier.padding(bottom = 8.dp),
+                                                color = MaterialTheme.colorScheme.onPrimary
 
-                                                )
-
-
-                                            }
-
+                                            )
 
 
                                         }
 
 
-
-
-
-
-
-
-
-
-
-
+                                    }
 
 
                                 }
 
                             }
-
-
 
 
                         }

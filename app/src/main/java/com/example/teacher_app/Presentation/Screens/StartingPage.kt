@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,9 +27,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.compose.AppTheme
+import com.example.teacher_app.AppTheme
+import com.example.teacher_app.ui.theme.onPrimaryLight
+import com.example.teacher_app.ui.theme.primaryLight
 import com.example.schoolapp.Presentation.Util.openWebsite
-import com.example.schoolapp.R
+import com.example.teacher_app.R
+
 
 //=======================================================
 //Start Page: UI & logic                                =
@@ -50,7 +54,7 @@ fun StartPage(onSignInClick: () -> Unit={}) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = MaterialTheme.colorScheme.primaryContainer),
+                .background(color = Color(0xFFF8E287)),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -62,7 +66,7 @@ fun StartPage(onSignInClick: () -> Unit={}) {
                     .clip(
                         RoundedCornerShape(20.dp)
                     )
-                    .background(color = MaterialTheme.colorScheme.primary),
+                    .background(color = primaryLight),
                 contentAlignment = Alignment.Center
             ) {
                 //main box UI: Column
@@ -93,13 +97,13 @@ fun StartPage(onSignInClick: () -> Unit={}) {
                         modifier = Modifier.size(275.dp, 43.dp),
                         onClick = {onSignInClick() },
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.onPrimary,
+                            containerColor = onPrimaryLight,
                             contentColor = MaterialTheme.colorScheme.background
                         )
                     ) {
                         Text(
                             text = "Sign in",
-                            color = MaterialTheme.colorScheme.primary,
+                            color = primaryLight,
                             style = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp
@@ -116,7 +120,7 @@ fun StartPage(onSignInClick: () -> Unit={}) {
                     ) {
                         Text(
                             text = "Not A student? Click Here ",
-                            color = MaterialTheme.colorScheme.primary,
+                            color = primaryLight,
                             style = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp,

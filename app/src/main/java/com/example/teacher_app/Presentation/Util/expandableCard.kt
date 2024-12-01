@@ -30,8 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.schoolapp.Data.Homework
-import com.example.schoolapp.Presentation.VM.MainViewModel
-import com.example.schoolapp.R
+import com.example.teacher_app.R
+
 
 //=======================================================
 //todo @LT #simple || explain this fun logic here       =

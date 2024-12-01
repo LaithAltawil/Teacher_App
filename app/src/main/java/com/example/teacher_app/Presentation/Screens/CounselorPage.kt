@@ -20,8 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.compose.AppTheme
-import com.example.schoolapp.Navigation.Screen
+import com.example.teacher_app.AppTheme
 import com.example.schoolapp.Presentation.Util.DatePickerModal
 import com.example.schoolapp.Presentation.VM.MainViewModel
 

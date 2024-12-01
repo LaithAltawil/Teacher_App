@@ -27,7 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.compose.AppTheme
+import com.example.teacher_app.AppTheme
 import com.example.schoolapp.Data.CalenderDays
 
 import com.example.schoolapp.Presentation.Util.ExpandableButton

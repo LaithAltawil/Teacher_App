@@ -37,10 +37,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.example.compose.AppTheme
+import com.example.teacher_app.AppTheme
 import com.example.schoolapp.Data.Subjects
 import com.example.schoolapp.Presentation.VM.MainViewModel
-import com.example.schoolapp.R
+import com.example.teacher_app.R
+
 
 //solved @LT #please|| we are not doing this 😥
 //@LT:we wont be doing theme and any hard thing
