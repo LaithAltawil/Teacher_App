@@ -7,10 +7,10 @@ import androidx.compose.ui.graphics.painter.Painter
 //=======================================================
 //*todo @MAS #meduim || recreate data class to match the database
 data class Homework(
-    val title: String,
-    val description: String,
+    val Student_Name: String,
     val dueDate: String,
-    val isCompleted: Boolean
+    val isCompleted: Boolean,
+    val file: String
 )
 //*todo @MAS #meduim || recreate data class to match the database
 data class Subjects(

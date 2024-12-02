@@ -1,6 +1,7 @@
 package com.example.schoolapp.Presentation.Screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -196,9 +197,10 @@ fun StudentClass(
                                     items(ClassesList) { List -> // Iterate through outer list
                                         Column(
                                             modifier = Modifier
-
-                                                .fillMaxSize()
-                                                .padding(16.dp),
+                                                .clip(RoundedCornerShape(36.dp))
+                                                .fillMaxSize().clickable {  }.
+                                                    padding(top = 8.dp, bottom = 8.dp)
+                                                .background(MaterialTheme.colorScheme.primaryContainer),
                                             horizontalAlignment = Alignment.CenterHorizontally
                                         ) {
 
@@ -206,14 +208,14 @@ fun StudentClass(
                                                 text = List[selectedItemIndex].subjectName,
                                                 fontSize = 26.sp,
                                                 modifier = Modifier.padding(bottom = 8.dp),
-                                                color = MaterialTheme.colorScheme.onPrimary
+                                                color = MaterialTheme.colorScheme.onPrimaryContainer
                                             )
                                             Spacer(modifier = Modifier.height(8.dp))
                                             Text(
                                                 text = List[selectedItemIndex].teacher,
                                                 fontSize = 22.sp,
                                                 modifier = Modifier.padding(bottom = 8.dp),
-                                                color = MaterialTheme.colorScheme.onPrimary
+                                                color = MaterialTheme.colorScheme.onPrimaryContainer
 
                                             )
                                             Spacer(modifier = Modifier.height(8.dp))
@@ -221,7 +223,7 @@ fun StudentClass(
                                                 text = List[selectedItemIndex].time,
                                                 fontSize = 18.sp,
                                                 modifier = Modifier.padding(bottom = 8.dp),
-                                                color = MaterialTheme.colorScheme.onPrimary
+                                                color = MaterialTheme.colorScheme.onPrimaryContainer
 
                                             )
 

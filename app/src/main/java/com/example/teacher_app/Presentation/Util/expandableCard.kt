@@ -66,15 +66,15 @@ fun ExpandableCard(Data: Homework) {
                 isExpanded = !isExpanded
             },
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row {
                 Text(
-                    text = Data.title,
+                    text = Data.Student_Name,
                     style = MaterialTheme.typography.headlineLarge
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -89,7 +89,7 @@ fun ExpandableCard(Data: Homework) {
             if (isExpanded) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = Data.description,
+                    text = Data.file,
                     style = MaterialTheme.typography.titleMedium
                 )
                 Row(

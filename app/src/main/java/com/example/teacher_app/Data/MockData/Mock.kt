@@ -14,44 +14,46 @@ object Mock {
     //todo @MAS #medium || insert the complete homework mock data after the related task is finished
     val HomeworkMock = listOf<Homework>(
         Homework(
-            "Math",
-            "Solve equations 1-20",
+            "Laith Altawil",
             "2023-12-24",
-            false
+            true,
+            "false"
         ),
         Homework(
-            "Math",
-            "Complete worksheet on fractions",
-            "2023-12-28",
-            true
+            "Laith Altawil",
+            "2023-12-24",
+            true,
+            "false"
         ),
         Homework(
-            "Science",
-            "Chapter 5 review questions",
-            "2024-01-05",
-            false
+            "Laith Altawil",
+            "2023-12-24",
+            true,
+            "false"
         ),
         Homework(
-            "Science",
-            "Prepare for science fair project",
-            "2024-01-15", false
+            "Laith Altawil",
+            "2023-12-24",
+            true,
+            "false"
         ),
         Homework(
-            "History",
-            "Read chapter 3 and write a summary", "2023-12-22",
-            true
+            "Laith Altawil",
+            "2023-12-24",
+            true,
+            "false"
         ),
         Homework(
-            "English",
-            "Essay on Shakespeare's Hamlet",
-            "2024-01-10",
-            false
+            "Laith Altawil",
+            "2023-12-24",
+            true,
+            "false"
         ),
         Homework(
-            "English",
-            "Poetry analysis worksheet",
-            "2023-12-29",
-            false
+            "Laith Altawil",
+            "2023-12-24",
+            true,
+            "false"
         )
     )
     //made for profile page will be deleted in the next days to be replaced with a better one

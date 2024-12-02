@@ -52,6 +52,7 @@ import com.example.schoolapp.Data.Subjects
 import com.example.schoolapp.Presentation.VM.MainViewModel
 import com.example.teacher_app.R
 
+//Will be replaced in the later days
 
 //=======================================================
 //solved @LT #simple || explain this fun logic here       =
@@ -73,7 +74,9 @@ fun MarksPage(mainviewmodel: MainViewModel = MainViewModel(),navController: NavC
     val mainMenuItem = listOf(
         MarksSubjects("Maths", painterResource(id = R.drawable.math),
             Marks = Marks(25,22,50),
-            onClick = {}
+            onClick = {
+
+            }
         ),
         MarksSubjects("Science", painterResource(id = R.drawable.science),
             Marks = Marks(22,32,50),
