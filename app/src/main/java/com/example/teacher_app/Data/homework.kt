@@ -25,6 +25,18 @@ data class MarksSubjects(
     val imagePath: Painter? = null,
     val onClick: () -> Unit,
     val Marks: Marks? = null
+)
+
+data class StudentsClasses(
+    val name: String,
+    val onClick: () -> Unit,
+    val Student: List<Studentmark>
+)
+data class Studentmark(
+    val name: String,
+    val FirstMark: Int,
+    val SecondMark: Int,
+    val FinalMark: Int=FirstMark+SecondMark,
 
 )
 /*LT: to add dates and events from the database to the Calender page

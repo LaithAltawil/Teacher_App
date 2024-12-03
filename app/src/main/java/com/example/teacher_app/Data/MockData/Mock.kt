@@ -5,6 +5,8 @@ import com.example.schoolapp.Data.Event
 import com.example.schoolapp.Data.Exam
 import com.example.schoolapp.Data.Homework
 import com.example.schoolapp.Data.Marks
+import com.example.schoolapp.Data.Studentmark
+import com.example.schoolapp.Data.StudentsClasses
 
 //=======================================================
 //Object class for mock data                            =
@@ -56,6 +58,7 @@ object Mock {
             "false"
         )
     )
+
     //made for profile page will be deleted in the next days to be replaced with a better one
     val profilePageTable = listOf(
         listOf("name :- ", "Laith"),
@@ -68,6 +71,87 @@ object Mock {
         listOf("language :- ", "English"),
         listOf("religion :- ", "Christian"),
     )
+    val Classes = listOf<StudentsClasses>(
+        StudentsClasses(
+            "12th Grade",
+            onClick = {},
+            Student = listOf<Studentmark>(
+                Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                ), Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                ), Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                ), Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                )
+
+
+            )
+        ),
+        StudentsClasses(
+            "11th Grade",
+            onClick = {},
+            Student = listOf<Studentmark>(
+                Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                ), Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                ), Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                ), Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                )
+
+
+            )
+        ),
+        StudentsClasses(
+            "10th Grade",
+            onClick = {},
+            Student = listOf<Studentmark>(
+                Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                ), Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                ), Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                ), Studentmark(
+                    "Laith",
+                    22,
+                    22,
+                )
+
+
+            )
+
+        )
+
+    )
+
+
     val daysOfWeek = listOf(
         "Sunday",
         "Monday",
@@ -75,6 +159,7 @@ object Mock {
         "Wednesday",
         "Thursday"
     )
+
     //todo @MAS #medium || insert the complete classList mock data after the related task is finished
     val classList = listOf(
         Class("Math", "Mr.Smith", "9:00 AM"),
@@ -152,26 +237,34 @@ object Mock {
         Event("Opening Ceremony", 1, "15/12/2023", "Friday", "The grand opening of the event."),
         Event("Workshop A", 2, "16/12/2023", "Saturday", "A hands-on workshop on topic A."),
         Event("Conference", 3, "17/12/2023", "Sunday", "A conference featuring industry experts."),
-        Event("Networking Session", 4, "18/12/2023", "Monday", "An opportunity to connect with other attendees."),
+        Event(
+            "Networking Session",
+            4,
+            "18/12/2023",
+            "Monday",
+            "An opportunity to connect with other attendees."
+        ),
         Event("Closing Ceremony", 5, "19/12/2023", "Tuesday", "The closing ceremony of the event.")
     )
-    val Mark= listOf(
+    val Mark = listOf(
         Marks(
-            22,22,50
+            22, 22, 50
         ),
         Marks(
-            22,22,50
+            22, 22, 50
         ),
         Marks(
-            22,22,50),
+            22, 22, 50
+        ),
         Marks(
-            22,22,59)
-        ,Marks(
-                22,22,59)
-        ,Marks(
-            22,22,59)
-        ,Marks(
-            22,22,59)
+            22, 22, 59
+        ), Marks(
+            22, 22, 59
+        ), Marks(
+            22, 22, 59
+        ), Marks(
+            22, 22, 59
+        )
 
     )
 }

@@ -112,8 +112,8 @@ fun MainMenu(navController: NavController) {
             }
         ),
         MainMenuItem(
-            title = "Marks",
-            icon = painterResource(id = R.drawable.grade),
+            title = "My Students",
+            icon = painterResource(id = R.drawable.training),
             onClick = {
                 navController.navigate(Screen.MarksPage.route)
                 scope.launch { drawerState.close() }
