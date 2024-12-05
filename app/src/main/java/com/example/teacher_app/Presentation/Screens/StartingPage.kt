@@ -54,7 +54,7 @@ fun StartPage(onSignInClick: () -> Unit={}) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color(0xFFF8E287)),
+                .background(color = MaterialTheme.colorScheme.primaryContainer),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {

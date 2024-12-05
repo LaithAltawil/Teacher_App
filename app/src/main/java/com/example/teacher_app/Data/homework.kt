@@ -1,6 +1,8 @@
 package com.example.schoolapp.Data
 
+import android.net.Uri
 import androidx.compose.ui.graphics.painter.Painter
+import java.io.File
 
 //=======================================================
 //Declaring data classes                               =
@@ -10,7 +12,13 @@ data class Homework(
     val Student_Name: String,
     val dueDate: String,
     val isCompleted: Boolean,
-    val file: String
+    val descvription: String? = null,
+    val file: Uri? = null
+)
+//*todo @MAS #meduim || recreate data class to match the database
+data class Assignment(
+    val isCompleted: Boolean,
+    val file: Uri? = null
 )
 //*todo @MAS #meduim || recreate data class to match the database
 data class Subjects(

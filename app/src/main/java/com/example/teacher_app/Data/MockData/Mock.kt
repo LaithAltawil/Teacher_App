@@ -14,48 +14,49 @@ import com.example.schoolapp.Data.StudentsClasses
 object Mock {
 
     //todo @MAS #medium || insert the complete homework mock data after the related task is finished
-    val HomeworkMock = listOf<Homework>(
+    val HomeworkMock = listOf(
         Homework(
             "Laith Altawil",
             "2023-12-24",
             true,
-            "false"
+
+
         ),
         Homework(
             "Laith Altawil",
             "2023-12-24",
             true,
-            "false"
+
         ),
         Homework(
             "Laith Altawil",
             "2023-12-24",
             true,
-            "false"
+
         ),
         Homework(
             "Laith Altawil",
             "2023-12-24",
             true,
-            "false"
+
+        ),
+        Homework(
+            "Laith Altawil",
+            "2023-12-26",
+            true,
+
         ),
         Homework(
             "Laith Altawil",
             "2023-12-24",
             true,
-            "false"
+
         ),
         Homework(
             "Laith Altawil",
             "2023-12-24",
             true,
-            "false"
-        ),
-        Homework(
-            "Laith Altawil",
-            "2023-12-24",
-            true,
-            "false"
+
         )
     )
 
@@ -71,7 +72,7 @@ object Mock {
         listOf("language :- ", "English"),
         listOf("religion :- ", "Christian"),
     )
-    val Classes = listOf<StudentsClasses>(
+    val Classes = listOf(
         StudentsClasses(
             "12th Grade",
             onClick = {},

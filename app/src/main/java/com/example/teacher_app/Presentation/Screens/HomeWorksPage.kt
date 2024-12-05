@@ -40,7 +40,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.example.schoolapp.Data.CalenderDays
 import com.example.schoolapp.Data.MockData.Mock.HomeworkMock
 import com.example.schoolapp.Presentation.Util.ExpandableCard
 import com.example.schoolapp.Presentation.VM.MainViewModel
@@ -63,11 +62,7 @@ fun HomeworkPage(
     var expanded by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf("Class A") }
     val options = listOf("Class A", "Class B", "Class C")
-    val calendarItems = listOf(
-        CalenderDays("Main Events", "A huge Open Day for jobs in tech for the future", {}),
-        CalenderDays("Counselor Schedule", "A huge Open Day for jobs in medicine for the future", {}),
-        CalenderDays("Semester Schedule", "A huge Open Day for jobs in finance for the future", {})
-    )
+
 
     //=======================================================
     //UI & Logic                                            =

@@ -27,10 +27,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.FileProvider
 import com.example.schoolapp.Data.Homework
 import com.example.teacher_app.R
+import java.io.File
 
 
 //=======================================================
@@ -45,6 +48,8 @@ fun ExpandableCard(Data: Homework) {
     //=======================================================
     //variables: local & states                             =
     //=======================================================
+    val context = LocalContext.current
+    val file = File(context.filesDir, "my_file.pdf")
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -80,7 +85,7 @@ fun ExpandableCard(Data: Homework) {
                 Spacer(modifier = Modifier.weight(1f))
                 //LT: this date will be replaced with the actual date when database is setup
                 Text(
-                    text = "20/10/2024",
+                    text = Data.dueDate,
                     style = MaterialTheme.typography.labelLarge
                 )
 
@@ -89,7 +94,7 @@ fun ExpandableCard(Data: Homework) {
             if (isExpanded) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = Data.file,
+                    text = Data.Student_Name,
                     style = MaterialTheme.typography.titleMedium
                 )
                 Row(
@@ -99,29 +104,37 @@ fun ExpandableCard(Data: Homework) {
                 ) {
                     Button(
 
-                        enabled = if (Data.isCompleted) false else true,
+                        enabled = if (Data.isCompleted) true else false,
                         onClick = {
-                            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                                addCategory(Intent.CATEGORY_OPENABLE)
-                                type = "*/*" // Allow all file types
+                            val uri = FileProvider.getUriForFile(
+                                context,
+                                "${context.packageName}.fileprovider", file
+                            )
+                            val intent = Intent(Intent.ACTION_VIEW).apply {
+                                setDataAndType(uri, "application/pdf") // Set MIME type accordingly
+                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                             }
-                            launcher.launch(intent)
+                            context.startActivity(intent)
                         }, colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.onPrimary,
                             contentColor = MaterialTheme.colorScheme.primary
                         )
                     ) {
-                        Text("Upload File")
+                        Text("Download File")
                     }
+
                     Icon(
                         modifier = Modifier.size(30.dp),
                         painter =
                         if (Data.isCompleted) {
                             painterResource(id = R.drawable.baseline_check_circle_24)
+
                         } else {
                             painterResource(id = R.drawable.baseline_radio_button_unchecked_24)
                         }, contentDescription = null
                     )
+
+
                 }
             }
         }
