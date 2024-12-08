@@ -1,4 +1,4 @@
-package com.example.schoolapp.Presentation.Util
+package com.example.teacher_app.Presentation.Screens.ScreensPieces
 
 import android.app.Activity
 import android.content.Intent

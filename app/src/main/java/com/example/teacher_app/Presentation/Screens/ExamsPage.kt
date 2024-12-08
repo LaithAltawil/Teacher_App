@@ -1,20 +1,15 @@
 package com.example.schoolapp.Presentation.Screens
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -34,10 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -46,6 +38,7 @@ import com.example.schoolapp.Data.Exam
 import com.example.schoolapp.Data.Subjects
 import com.example.schoolapp.Presentation.VM.MainViewModel
 import com.example.teacher_app.AppTheme
+import com.example.teacher_app.Presentation.Screens.ScreensPieces.ExamsCard
 import com.example.teacher_app.R
 
 //=======================================================
@@ -61,38 +54,47 @@ fun ExamsPage(mainViewModel: MainViewModel = MainViewModel(), navController: Nav
 
     //todo @MAS #medium|| put the right data here form the database
     val mainMenuItem = listOf(
-        Subjects("Maths", painterResource(id = R.drawable.math),
-            exam = Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+        Subjects("Class 5",
+            painterResource(id = R.drawable.math),
+            exam = listOf(
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101")
+            ),
             onClick = {}
         ),
-        Subjects("Science", painterResource(id = R.drawable.science),
-            exam = Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+        Subjects("Class 6", painterResource(id = R.drawable.science),
+            exam = listOf(
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101")
+            ),
             onClick = {}),
-        Subjects("English", painterResource(id = R.drawable.english),
-            exam = Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+        Subjects("Class 7", painterResource(id = R.drawable.english),
+            exam = listOf(
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101")
+            ),
             onClick = {}),
         Subjects(
-            "History",
+            "Class 8",
             painterResource(id = R.drawable.history),
-            exam = Exam("History", "2023-12-20", "11:00 AM", "Room F606"),
+            exam = listOf(
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101")
+            ),
             onClick = {}
         ),
         Subjects(
-            "Arabic",
+            "Class 9",
             painterResource(id = R.drawable.arabic),
-            exam = Exam("Arabic", "2023-12-21", "03:00 PM", "Room G707"),
-            onClick = {}
-        ),
-        Subjects(
-            "Computer Science",
-            painterResource(id = R.drawable.science),
-            exam = Exam("Computer Science", "2023-12-22", "09:00 AM", "Lab H808"),
-            onClick = {}
-        ),
-        Subjects(
-            "Geography",
-            painterResource(id = R.drawable.geography),
-            exam = Exam("Geography", "2023-12-23", "02:00 PM", "Hall I909"),
+            exam = listOf(
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
+                Exam("Mathematics", "2023-11-15", "10:00 AM", "Room A101")
+            ),
             onClick = {}
         )
     )
@@ -158,86 +160,135 @@ fun ExamsPage(mainViewModel: MainViewModel = MainViewModel(), navController: Nav
                     horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
                 ) {
                     //lazy grid to hold the data logic & UI design
-                    LazyVerticalGrid(columns = GridCells.Fixed(2)) {
-
-                        //controls the lazy size
-                        itemsIndexed(mainMenuItem) { index,item ->
-                            //hold the subject details
-                            Card(
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
+                        itemsIndexed(mainMenuItem) { index, items ->
+                            Card(modifier = Modifier
+                                .fillMaxWidth()
+                                .height(100.dp)
+                                .padding(10.dp),
                                 colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.primary
+                                    containerColor = MaterialTheme.colorScheme.primary,
+                                    contentColor = MaterialTheme.colorScheme.onPrimary
                                 ),
-                                modifier = Modifier
-                                    .padding(16.dp)
-                                    .wrapContentHeight()
-                                    .size(200.dp)
-                                    .width(100.dp)
-                                    .clickable {
-                                        mainViewModel.updateBottomSheetState(index, true)
-                                    },
+                                onClick = {
+                                    mainViewModel.updateBottomSheetState(index, true)
+                                }
                             ) {
-                                //main card UI
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(16.dp)
-                                        .wrapContentSize(Alignment.Center),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                    verticalArrangement = Arrangement.Center
+                                Row(
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    //solved @LT:Icon will be changed when we find all the required icons
-                                    //they will be in a list with the subject names
-                                    mainMenuItem[index].imagePath?.let {
-                                        Icon(
-                                            painter =
-                                            it,
-                                            contentDescription = null
-                                        )
-                                    }
-                                    //subject name
                                     Text(
-                                        modifier = Modifier.padding(10.dp),
                                         text = mainMenuItem[index].name,
-                                        fontSize = 24.sp,
-                                        color = Color.White,
-                                        textAlign = TextAlign.Center,
-                                        overflow = TextOverflow.Visible
+                                        fontStyle = MaterialTheme.typography.bodyLarge.fontStyle,
+                                        fontSize = 26.sp,
+                                        modifier = Modifier.padding(start = 16.dp)
                                     )
-                                }
-                            }
-                            //this is an if statement which by using the state showBottomSheet
-                            //it will either show or hide the bottom sheet
-                            if (state.value.BottomSheet[index]) {
-                                ModalBottomSheet(containerColor = MaterialTheme.colorScheme.primary,
-                                    onDismissRequest = {
-                                        mainViewModel.updateBottomSheetState(index,false)
+
+                                    if (state.value.BottomSheet[index]) {
+                                        ModalBottomSheet(containerColor = MaterialTheme.colorScheme.primary,
+                                            onDismissRequest = {
+                                                mainViewModel.updateBottomSheetState(index, false)
+                                            }
+                                        ) {
+                                            // Bottom sheet content
+                                            LazyColumn {
+                                                itemsIndexed(items.exam!!) { index, item ->
+                                                    ExamsCard(exam = items.exam!![index])
+                                                }
+                                            }
+
+
+                                        }
+
                                     }
-                                ) {
-                                    // Bottom sheet content
-                                    Column(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(16.dp)
-                                    ) {
-                                        //todo @LT #qustion[not answered] || what to do here?
-                                        Row(modifier = Modifier.fillMaxWidth()) {
-                                            Text(text = "Date:")
-                                            Spacer(modifier = Modifier.width(8.dp))
-                                            Text(text = mainMenuItem[index].exam!!.date)
-                                        }
-                                        Row(modifier = Modifier.fillMaxWidth()) {
-                                            Text(text = "time:")
-                                            Spacer(modifier = Modifier.width(8.dp))
-                                            Text(text = mainMenuItem[index].exam!!.time)
-                                        }
-                                        Row(modifier = Modifier.fillMaxWidth()) {
-                                            Text(text = "Location:")
-                                            Spacer(modifier = Modifier.width(8.dp))
-                                            Text(text = mainMenuItem[index].exam!!.location)
-                                        }
-                                    }
+
                                 }
+
                             }
+//                    LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+//
+//                        //controls the lazy size
+//                        itemsIndexed(mainMenuItem) { index,item ->
+//                            //hold the subject details
+//                            Card(
+//                                colors = CardDefaults.cardColors(
+//                                    containerColor = MaterialTheme.colorScheme.primary
+//                                ),
+//                                modifier = Modifier
+//                                    .padding(16.dp)
+//                                    .wrapContentHeight()
+//                                    .size(200.dp)
+//                                    .width(100.dp)
+//                                    .clickable {
+//                                        mainViewModel.updateBottomSheetState(index, true)
+//                                    },
+//                            ) {
+//                                //main card UI
+//                                Column(
+//                                    modifier = Modifier
+//                                        .fillMaxSize()
+//                                        .padding(16.dp)
+//                                        .wrapContentSize(Alignment.Center),
+//                                    horizontalAlignment = Alignment.CenterHorizontally,
+//                                    verticalArrangement = Arrangement.Center
+//                                ) {
+//                                    //solved @LT:Icon will be changed when we find all the required icons
+//                                    //they will be in a list with the subject names
+//                                    mainMenuItem[index].imagePath?.let {
+//                                        Icon(
+//                                            painter =
+//                                            it,
+//                                            contentDescription = null
+//                                        )
+//                                    }
+//                                    //subject name
+//                                    Text(
+//                                        modifier = Modifier.padding(10.dp),
+//                                        text = mainMenuItem[index].name,
+//                                        fontSize = 24.sp,
+//                                        color = Color.White,
+//                                        textAlign = TextAlign.Center,
+//                                        overflow = TextOverflow.Visible
+//                                    )
+//                                }
+//                            }
+//                            //this is an if statement which by using the state showBottomSheet
+//                            //it will either show or hide the bottom sheet
+//                            if (state.value.BottomSheet[index]) {
+//                                ModalBottomSheet(containerColor = MaterialTheme.colorScheme.primary,
+//                                    onDismissRequest = {
+//                                        mainViewModel.updateBottomSheetState(index,false)
+//                                    }
+//                                ) {
+//                                    // Bottom sheet content
+//                                    Column(
+//                                        modifier = Modifier
+//                                            .fillMaxWidth()
+//                                            .padding(16.dp)
+//                                    ) {
+//                                        //todo @LT #qustion[not answered] || what to do here?
+//                                        Row(modifier = Modifier.fillMaxWidth()) {
+//                                            Text(text = "Date:")
+//                                            Spacer(modifier = Modifier.width(8.dp))
+//                                            Text(text = mainMenuItem[index].exam!!.date)
+//                                        }
+//                                        Row(modifier = Modifier.fillMaxWidth()) {
+//                                            Text(text = "time:")
+//                                            Spacer(modifier = Modifier.width(8.dp))
+//                                            Text(text = mainMenuItem[index].exam!!.time)
+//                                        }
+//                                        Row(modifier = Modifier.fillMaxWidth()) {
+//                                            Text(text = "Location:")
+//                                            Spacer(modifier = Modifier.width(8.dp))
+//                                            Text(text = mainMenuItem[index].exam!!.location)
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
                         }
                     }
                 }
@@ -245,23 +296,3 @@ fun ExamsPage(mainViewModel: MainViewModel = MainViewModel(), navController: Nav
         }
     }
 }
-//Trial and error work to display
-//working will be moving it to relative file in the next days
-@Composable
-fun ExamDetailsColumn(subject: String, date: String, time: String, location: String) {
-    Column(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-    ) {
-        Text("Subject: ${subject}", style = MaterialTheme.typography.displayMedium)
-        Text("Date: ${date}", style = MaterialTheme.typography.displayMedium)
-        Text("Time: ${time}", style = MaterialTheme.typography.displayMedium)
-        Text("Location: ${location}", style = MaterialTheme.typography.displayMedium)
-    }
-}
-//@Composable
-//@Preview
-//fun ExamsPagePreview() {
-//    ExamsPage()
-//}

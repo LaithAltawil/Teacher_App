@@ -52,13 +52,13 @@ sealed class MainDataClass{
             "English"
         ),
         val MarksItems: List<Subjects> = listOf(
-            Subjects("Maths",onClick = { }) ,
-            Subjects("Science",onClick = { }) ,
-            Subjects("English",onClick = { }) ,
-            Subjects("History",onClick = { }) ,
-            Subjects("Arabic",onClick = { }) ,
-            Subjects("Computer Science",onClick = { }) ,
-            Subjects("Geography",onClick = { })
+            Subjects("Maths", onClick = { }) ,
+            Subjects("Science", onClick = { }) ,
+            Subjects("English", onClick = { }) ,
+            Subjects("History", onClick = { }) ,
+            Subjects("Arabic", onClick = { }) ,
+            Subjects("Computer Science", onClick = { }) ,
+            Subjects("Geography", onClick = { })
         ),
         val isTopBarVisible: Boolean = false,
         var BottomSheet: MutableList<Boolean>
@@ -76,13 +76,13 @@ sealed class MainDataClass{
     data class ResourcesPageState(
         val isTopAppBarVisible: Boolean = false,
         val Subjects: List<Subjects> = listOf(
-            Subjects("Maths",onClick = { }) ,
-            Subjects("Science",onClick = { }) ,
-            Subjects("English",onClick = { }) ,
-            Subjects("History",onClick = { }) ,
-            Subjects("Arabic",onClick = { }) ,
-            Subjects("Computer Science",onClick = { }) ,
-            Subjects("Geography",onClick = { })
+            Subjects("Maths", onClick = { }) ,
+            Subjects("Science", onClick = { }) ,
+            Subjects("English", onClick = { }) ,
+            Subjects("History", onClick = { }) ,
+            Subjects("Arabic", onClick = { }) ,
+            Subjects("Computer Science", onClick = { }) ,
+            Subjects("Geography", onClick = { })
         ),
         var BottomSheet1: MutableList<Boolean>
         = mutableStateListOf(false, false, false, false, false, false, false)

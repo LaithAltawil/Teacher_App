@@ -16,9 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.outlined.Menu
@@ -57,10 +55,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.schoolapp.Data.MainMenuItem
 import com.example.schoolapp.Data.MockData.Mock.ClassesList
-import com.example.schoolapp.Data.MockData.Mock.HomeworkMock
 import com.example.schoolapp.Data.MockData.Mock.classList
 import com.example.schoolapp.Data.MockData.Mock.daysOfWeek
-import com.example.schoolapp.Presentation.Util.ExpandableCard
 import com.example.teacher_app.AppTheme
 import com.example.teacher_app.Navigation.Screen
 import com.example.teacher_app.R

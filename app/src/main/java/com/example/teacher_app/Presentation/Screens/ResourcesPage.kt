@@ -47,6 +47,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.schoolapp.Data.Exam
+import com.example.schoolapp.Data.MainMenuItem
+import com.example.schoolapp.Data.MainMenuItems
 import com.example.schoolapp.Data.Subjects
 import com.example.schoolapp.Presentation.VM.MainViewModel
 import com.example.teacher_app.AppTheme
@@ -73,35 +75,35 @@ fun ResourcesPage(mainviewmodel: MainViewModel = MainViewModel(),navController: 
     //=======================================================
     val state = mainviewmodel.Resourcesstate.collectAsStateWithLifecycle()
     val mainMenuItem = listOf(
-        Subjects("Maths", painterResource(id = R.drawable.math),
+        MainMenuItems("Maths", painterResource(id = R.drawable.math),
             exam = Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
             onClick = {}
         ),
-        Subjects("Science", painterResource(id = R.drawable.science),
+        MainMenuItems("Science", painterResource(id = R.drawable.science),
             exam = Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
             onClick = {}),
-        Subjects("English", painterResource(id = R.drawable.english),
+        MainMenuItems("English", painterResource(id = R.drawable.english),
             exam = Exam("Mathematics", "2023-12-15", "10:00 AM", "Room A101"),
             onClick = {}),
-        Subjects(
+        MainMenuItems(
             "History",
             painterResource(id = R.drawable.history),
             exam = Exam("History", "2023-12-20", "11:00 AM", "Room F606"),
             onClick = {}
         ),
-        Subjects(
+        MainMenuItems(
             "Arabic",
             painterResource(id = R.drawable.arabic),
             exam = Exam("Arabic", "2023-12-21", "03:00 PM", "Room G707"),
             onClick = {}
         ),
-        Subjects(
+        MainMenuItems(
             "Computer Science",
             painterResource(id = R.drawable.science),
             exam = Exam("Computer Science", "2023-12-22", "09:00 AM", "Lab H808"),
             onClick = {}
         ),
-        Subjects(
+        MainMenuItems(
             "Geography",
             painterResource(id = R.drawable.geography),
             exam = Exam("Geography", "2023-12-23", "02:00 PM", "Hall I909"),

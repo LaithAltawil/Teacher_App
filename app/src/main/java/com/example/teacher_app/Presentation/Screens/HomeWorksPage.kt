@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.schoolapp.Data.MockData.Mock.HomeworkMock
-import com.example.schoolapp.Presentation.Util.ExpandableCard
+import com.example.teacher_app.Presentation.Screens.ScreensPieces.ExpandableCard
 import com.example.schoolapp.Presentation.VM.MainViewModel
 import com.example.teacher_app.AppTheme
 

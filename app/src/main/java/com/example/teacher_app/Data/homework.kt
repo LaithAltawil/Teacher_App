@@ -2,7 +2,6 @@ package com.example.schoolapp.Data
 
 import android.net.Uri
 import androidx.compose.ui.graphics.painter.Painter
-import java.io.File
 
 //=======================================================
 //Declaring data classes                               =
@@ -25,8 +24,13 @@ data class Subjects(
     val name: String,
     val imagePath: Painter? = null,
     val onClick: () -> Unit,
-    val exam: Exam? = null
-
+    val exam: List<Exam>?=null
+)
+data class MainMenuItems(
+    val name: String,
+    val imagePath: Painter? = null,
+    val onClick: () -> Unit,
+    val exam: Exam
 )
 data class MarksSubjects(
     val name: String,
