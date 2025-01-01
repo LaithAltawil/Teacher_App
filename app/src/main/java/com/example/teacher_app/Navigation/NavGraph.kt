@@ -1,9 +1,11 @@
 package com.example.teacher_app.Navigation
 
+import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
@@ -115,6 +117,8 @@ fun Navigation() {
                 //)
             }
             composable(Screen.HomeworkPage.route) {
+                val Context = LocalContext.current
+                val storageManager=
                 HomeworkPage(
                     //solved @LT #qustion|| why didn't you parse the navigation instead of the viewModel?
                     //LT:Not needed to be parsed, but might parse it later depending on its need

@@ -3,6 +3,7 @@ package com.example.schoolapp.Presentation.Screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +20,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -84,7 +86,7 @@ fun MainMenu(navController: NavController) {
 
     val menuItems = listOf(
         MainMenuItem(
-            title = "Calender",
+            title = "الرزنامة",
             icon = painterResource(id = R.drawable.calendar),
             onClick = {
                 navController.navigate(Screen.CalenderPage.route)
@@ -92,7 +94,7 @@ fun MainMenu(navController: NavController) {
             }
         ),
         MainMenuItem(
-            title = "Classes",
+            title = "حصصي",
             icon = painterResource(id = R.drawable.training),
             onClick = {
                 navController.navigate(Screen.ClassesPage.route)
@@ -100,7 +102,7 @@ fun MainMenu(navController: NavController) {
             }
         ),
         MainMenuItem(
-            title = "Exams",
+            title = "الامتحانات",
             icon = painterResource(id = R.drawable.exam__1_),
             onClick = {
                 navController.navigate(Screen.ExamsPage.route)
@@ -108,7 +110,7 @@ fun MainMenu(navController: NavController) {
             }
         ),
         MainMenuItem(
-            title = "My Students",
+            title = "طلابي",
             icon = painterResource(id = R.drawable.training),
             onClick = {
                 navController.navigate(Screen.MarksPage.route)
@@ -116,7 +118,7 @@ fun MainMenu(navController: NavController) {
             }
         ),
         MainMenuItem(
-            title = "Homeworks",
+            title = "الواجبات",
             icon = painterResource(id = R.drawable.baseline_class_24),
             onClick = {
                 navController.navigate(Screen.HomeworkPage.route)
@@ -125,7 +127,7 @@ fun MainMenu(navController: NavController) {
             }
         ),
         MainMenuItem(
-            title = "Settings",
+            title = "تواصل معنا",
             icon = painterResource(id = R.drawable.baseline_settings_24),
             onClick = {
                 navController.navigate(Screen.SettingsPage.route)
@@ -133,7 +135,7 @@ fun MainMenu(navController: NavController) {
             }
         ),
         MainMenuItem(
-            title = "Logout",
+            title = "تسجيل خروج",
             icon = painterResource(id = R.drawable.ic_logout),
             onClick = { /*TODO*/ }
         )
@@ -161,7 +163,7 @@ fun MainMenu(navController: NavController) {
                         )
 
                         .width(300.dp),
-                    color = Color(0xFF6E5D00)
+                    color = MaterialTheme.colorScheme.primary
                 ) {
                     Column(
                         modifier = Modifier
@@ -188,7 +190,7 @@ fun MainMenu(navController: NavController) {
                                 )
                                 if (drawerState.isOpen) {
                                     Text(
-                                        text = "Account",
+                                        text = "حسابي",
                                         style = MaterialTheme.typography.headlineLarge
                                     )
                                 } else {
@@ -219,14 +221,14 @@ fun MainMenu(navController: NavController) {
                                             verticalAlignment = Alignment.CenterVertically,
                                             horizontalArrangement = Arrangement.SpaceBetween
                                         ) {
-                                            Text(
-                                                text = menuItems[item].title,
-                                                style = MaterialTheme.typography.headlineLarge
-                                            )
                                             Icon(
                                                 painter = menuItems[item].icon,
                                                 contentDescription = null,
                                                 modifier = Modifier.size(50.dp)
+                                            )
+                                            Text(
+                                                text = menuItems[item].title,
+                                                style = MaterialTheme.typography.headlineLarge
                                             )
                                         }
                                     }
@@ -239,41 +241,41 @@ fun MainMenu(navController: NavController) {
             content = {
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     containerColor = MaterialTheme.colorScheme.primaryContainer, topBar = {
-                        LargeTopAppBar(
-                            modifier = Modifier.clip(
-                                RoundedCornerShape(
-                                    bottomEnd = 16.dp,
-                                    bottomStart = 16.dp
-                                )
-                            ),
-                            title = {
-                                Column(modifier = Modifier.fillMaxWidth()) {
-                                    Text(
-                                        text = "Welcome, Laith",
-                                        style = TextStyle(fontSize = 48.sp),
-                                        modifier = Modifier.padding(start = 10.dp),
-                                    )
-                                }
-                            },
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.primary,
-                                titleContentColor = MaterialTheme.colorScheme.onPrimary
-                            ), navigationIcon = {
-
-                                IconButton(onClick = {
-                                    scope.launch {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(bottomEnd = 16.dp, bottomStart = 16.dp))
+                                .height(170.dp)
+                                .background(MaterialTheme.colorScheme.primary)
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxSize(),
+                            ) {
+                                IconButton(
+                                    modifier = Modifier.padding(top = 50.dp, start = 5.dp),
+                                    onClick = {
+                                        scope.launch {
                                         drawerState.open()
                                     }
-                                }) {
+                                    },
+                                ) {
                                     Icon(
                                         Icons.Outlined.Menu,
-                                        contentDescription = null,
+                                        contentDescription = "Back",
                                         modifier = Modifier.size(50.dp),
                                         tint = MaterialTheme.colorScheme.onPrimary
                                     )
                                 }
+                                Spacer(modifier = Modifier.width(20.dp))
+                                Text(
+                                    text = "اهلا, ليث",
+                                    fontSize = 60.sp,
+                                    fontFamily = MaterialTheme.typography.titleLarge.fontFamily,
+                                    modifier = Modifier.padding(top = 40.dp),
+                                    color = MaterialTheme.colorScheme.onPrimary
+                                )
                             }
-                        )
+                        }
                     }
                 ) {
                     Column(
@@ -281,8 +283,6 @@ fun MainMenu(navController: NavController) {
                             .padding(it)
                             .fillMaxSize()
                     ) {
-
-
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
@@ -330,7 +330,7 @@ fun MainMenu(navController: NavController) {
                             }
                             Spacer(modifier = Modifier.height(5.dp))
                             Text(
-                                text = "Classes",
+                                text = "حصصي",
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.displayLarge,
                                 color = MaterialTheme.colorScheme.secondary

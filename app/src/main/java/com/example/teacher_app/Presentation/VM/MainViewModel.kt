@@ -1,7 +1,14 @@
 package com.example.schoolapp.Presentation.VM
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
+
+import com.example.schoolapp.Presentation.Screens.HomeworkPage
 import com.example.schoolapp.Presentation.VM.States.MainDataClass
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,11 +24,9 @@ class MainViewModel : ViewModel() {
     //functions: public & private                           =
     //=======================================================
     //todo @LT #simple|| please format the file with the provided pattern
-
     // Homework Page
     private val _state = MutableStateFlow(MainDataClass.HomeworkPageState1())
     val state: StateFlow<MainDataClass.HomeworkPageState1> = _state.asStateFlow()
-
 
     //Exam Page
     private val _Examstate = MutableStateFlow(MainDataClass.ExamPageState1())
@@ -51,7 +56,7 @@ class MainViewModel : ViewModel() {
     private val _Settingstate = MutableStateFlow(MainDataClass.SettingsPageState1())
     val Settingstate: StateFlow<MainDataClass.SettingsPageState1> = _Settingstate.asStateFlow()
 
-    fun showAlertDialog(index: Int, newState: Boolean){
+    fun showAlertDialog(index: Int, newState: Boolean) {
         if (index in _Settingstate.value.showAlertDialog.indices) {
             _Settingstate.value.showAlertDialog[index] = newState
         }
@@ -88,7 +93,6 @@ class MainViewModel : ViewModel() {
             _Resourcesstate.value.BottomSheet1[index] = newState
         }
     }
-
 
 
     //ClassesPage

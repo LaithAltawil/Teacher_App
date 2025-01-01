@@ -14,51 +14,155 @@ import com.example.schoolapp.Data.StudentsClasses
 object Mock {
 
     //todo @MAS #medium || insert the complete homework mock data after the related task is finished
-    val HomeworkMock = listOf(
-        Homework(
-            "Laith Altawil",
-            "2023-12-24",
-            true,
+    class ClassInfo(
+        val subjectName: String,
+        val subjectNameArabic: String,
+        val teacher: String,
+        val teacherArabic: String,
+        val time: String,
+        val timeArabic: String
+    )
 
-
+    // Mock data for different days
+    val sundayClasses = listOf(
+        ClassInfo(
+            "Mathematics", "الرياضيات",
+            "Dr. Ahmed", "د. أحمد",
+            "8:00 AM - 9:30 AM", "٨:٠٠ ص - ٩:٣٠ ص"
         ),
-        Homework(
-            "Laith Altawil",
-            "2023-12-24",
-            true,
-
+        ClassInfo(
+            "Physics", "الفيزياء",
+            "Dr. Mohammed", "د. محمد",
+            "10:00 AM - 11:30 AM", "١٠:٠٠ ص - ١١:٣٠ ص"
         ),
-        Homework(
-            "Laith Altawil",
-            "2023-12-24",
-            true,
-
-        ),
-        Homework(
-            "Laith Altawil",
-            "2023-12-24",
-            true,
-
-        ),
-        Homework(
-            "Laith Altawil",
-            "2023-12-26",
-            true,
-
-        ),
-        Homework(
-            "Laith Altawil",
-            "2023-12-24",
-            true,
-
-        ),
-        Homework(
-            "Laith Altawil",
-            "2023-12-24",
-            true,
-
+        ClassInfo(
+            "Chemistry", "الكيمياء",
+            "Dr. Fatima", "د. فاطمة",
+            "12:00 PM - 1:30 PM", "١٢:٠٠ م - ١:٣٠ م"
         )
     )
+
+    val mondayClasses = listOf(
+        ClassInfo(
+            "Biology", "الأحياء",
+            "Dr. Sarah", "د. سارة",
+            "9:00 AM - 10:30 AM", "٩:٠٠ ص - ١٠:٣٠ ص"
+        ),
+        ClassInfo(
+            "English", "اللغة الإنجليزية",
+            "Mr. Hassan", "أ. حسن",
+            "11:00 AM - 12:30 PM", "١١:٠٠ ص - ١٢:٣٠ م"
+        )
+    )
+    val tuesdayClasses = listOf(
+        ClassInfo(
+            "Math",
+            "الرياضيات",
+            "Ms. Amina", "أ. أمينة",
+            "9:00 AM - 10:30 AM",
+            "٩:٠٠ ص - ١٠:٣٠ ص"
+        ),
+        ClassInfo(
+            "Physics",
+            "الفيزياء",
+            "Dr. Khaled",
+            "د. خالد",
+            "11:00 AM - 12:30 PM",
+            "١١:٠٠ ص - ١٢:٣٠ م"
+        )
+    )
+    val wednesdayClasses = listOf( ClassInfo( "Chemistry", "الكيمياء", "Dr. Layla", "د. ليلى", "9:00 AM - 10:30 AM", "٩:٠٠ ص - ١٠:٣٠ ص" ), ClassInfo( "History", "التاريخ", "Mr. Ali", "أ. علي", "11:00 AM - 12:30 PM", "١١:٠٠ ص - ١٢:٣٠ م" ) )
+    val thursdayClasses = listOf( ClassInfo( "Geography", "الجغرافيا", "Ms. Rania", "أ. رانيا", "9:00 AM - 10:30 AM", "٩:٠٠ ص - ١٠:٣٠ ص" ), ClassInfo( "Art", "الفنون", "Mr. Omar", "أ. عمر", "11:00 AM - 12:30 PM", "١١:٠٠ ص - ١٢:٣٠ م" ) )
+    // Complete weekly schedule
+    val ClasseList = listOf(
+        sundayClasses,
+        mondayClasses,
+        tuesdayClasses,
+        wednesdayClasses,
+        thursdayClasses
+        // Add more days as needed
+    )
+    data class HomeworkItem(
+        val subject: String,
+        val subjectArabic: String,
+        val description: String,
+        val descriptionArabic: String,
+        val dueDate: String,
+        val dueDateArabic: String
+    )
+
+    val HomeworkMock = listOf(
+        HomeworkItem(
+            "Mathematics",
+            "الرياضيات",
+            "Complete exercises 1-10 from Chapter 3",
+            "إكمال التمارين ١-١٠ من الفصل الثالث",
+            "Tomorrow, 2:00 PM",
+            "غداً، ٢:٠٠ م"
+        ),
+        HomeworkItem(
+            "Physics",
+            "الفيزياء",
+            "Write a lab report on the pendulum experiment",
+            "كتابة تقرير مختبر عن تجربة البندول",
+            "Next Monday, 9:00 AM",
+            "الإثنين القادم، ٩:٠٠ ص"
+        ),
+        HomeworkItem(
+            "Arabic",
+            "اللغة العربية",
+            "Read pages 45-50 and summarize the main ideas",
+            "قراءة الصفحات ٤٥-٥٠ وتلخيص الأفكار الرئيسية",
+            "Wednesday, 11:30 AM",
+            "الأربعاء، ١١:٣٠ ص"
+        )
+    )
+
+//    val HomeworkMock = listOf(
+//        Homework(
+//            "Laith Altawil",
+//            "2023-12-24",
+//            true,
+//
+//
+//            ),
+//        Homework(
+//            "Laith Altawil",
+//            "2023-12-24",
+//            true,
+//
+//            ),
+//        Homework(
+//            "Laith Altawil",
+//            "2023-12-24",
+//            true,
+//
+//            ),
+//        Homework(
+//            "Laith Altawil",
+//            "2023-12-24",
+//            true,
+//
+//            ),
+//        Homework(
+//            "Laith Altawil",
+//            "2023-12-26",
+//            true,
+//
+//            ),
+//        Homework(
+//            "Laith Altawil",
+//            "2023-12-24",
+//            true,
+//
+//            ),
+//        Homework(
+//            "Laith Altawil",
+//            "2023-12-24",
+//            true,
+//
+//            )
+//    )
 
     //made for profile page will be deleted in the next days to be replaced with a better one
     val profilePageTable = listOf(

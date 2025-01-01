@@ -80,7 +80,7 @@ fun SignIn(viewModel: AppViewModel = AppViewModel(), onClick: () -> Unit = {}) {
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "Welcome Back",
+                        text = "اهلا بك مجددا",
                         color = Color(0xFFFFFFFF),
                         style = MaterialTheme.typography.displayMedium,
                         overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
@@ -89,7 +89,7 @@ fun SignIn(viewModel: AppViewModel = AppViewModel(), onClick: () -> Unit = {}) {
                     Spacer(modifier = Modifier.size(30.dp))
                     //TextFields = 2 and a button
                     TextField(
-                        label = { Text(text = "Username") },
+                        label = { Text(text = "اسم المستخدم") },
                         maxLines = 1,
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                         //save value to the ViewModel
@@ -100,7 +100,7 @@ fun SignIn(viewModel: AppViewModel = AppViewModel(), onClick: () -> Unit = {}) {
                         })
                     Spacer(modifier = Modifier.size(15.dp))
                     TextField(
-                        label = { Text(text = "Password") },
+                        label = { Text(text = "كلمة السر") },
                         maxLines = 1,
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                         //store value to the viewModel
@@ -137,7 +137,7 @@ fun SignIn(viewModel: AppViewModel = AppViewModel(), onClick: () -> Unit = {}) {
                             onClick()
                         }) {
                         Text(
-                            text = "Sign In",
+                            text = "تسجيل دخول",
                             style = MaterialTheme.typography.bodyLarge,
                             fontSize = 25.sp,
                             fontWeight = FontWeight.Bold
