@@ -88,16 +88,7 @@ fun SignIn(viewModel: AppViewModel = AppViewModel(), onClick: () -> Unit = {}) {
                     )
                     Spacer(modifier = Modifier.size(30.dp))
                     //TextFields = 2 and a button
-                    TextField(
-                        label = { Text(text = "اسم المستخدم") },
-                        maxLines = 1,
-                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                        //save value to the ViewModel
-                        value = state.value.UserName,
-                        modifier = Modifier.clip(RoundedCornerShape(20.dp)),
-                        onValueChange = {
-                            viewModel.onUserNameChange(it)
-                        })
+
                     Spacer(modifier = Modifier.size(15.dp))
                     TextField(
                         label = { Text(text = "كلمة السر") },

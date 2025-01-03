@@ -15,6 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -77,13 +78,6 @@ fun StartPage(onSignInClick: () -> Unit={}) {
                 ) {
                     //solved @LT #simple|| replace with logo
 
-//                    Text(
-//                        text = "Amman High School",
-//                        color = MaterialTheme.colorScheme.onPrimary,
-//                        style = MaterialTheme.typography.displayMedium,
-//                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
-//                        textAlign = TextAlign.Center
-//                    )
                     //logo for a bit until
                     Image(
                         painter = painterResource(id = R.drawable.math),
@@ -93,6 +87,14 @@ fun StartPage(onSignInClick: () -> Unit={}) {
                     )
                     Spacer(modifier = Modifier.size(30.dp))
                     //sign in button
+                   TextField(
+                       label = { Text(text = "اسم المستخدم") },
+                       maxLines = 1,
+                       value = "",
+                       modifier = Modifier.clip(RoundedCornerShape(20.dp)),
+                       onValueChange = {}
+                   )
+                    Spacer(modifier = Modifier.size(10.dp))
                     Button(
                         modifier = Modifier.size(275.dp, 43.dp),
                         onClick = {onSignInClick() },
@@ -111,22 +113,7 @@ fun StartPage(onSignInClick: () -> Unit={}) {
                     }
                     Spacer(modifier = Modifier.size(15.dp))
                     //not a student button
-                    Button(
-                        onClick = { openWebsite(context, url) },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.onPrimary,
-                            contentColor = MaterialTheme.colorScheme.background
-                        )
-                    ) {
-                        Text(
-                            text = "لست استاذ؟ اضغط هنا",
-                            color = primaryLight,
-                            style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp,
-                            textAlign = TextAlign.Center
-                        )
-                    }
+
                 }
             }
         }
